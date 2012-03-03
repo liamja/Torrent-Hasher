@@ -1,10 +1,12 @@
 require 'rubygems'
 require 'bencode'
 require 'digest/sha1'
+require 'optparse'
 
-# Hash to get
-# 19f090af75ac25bcb3e1835624431a218874a3fd
-
-torrent		= BEncode.load_file( "the-muppets.torrent" )
-info_hash	= Digest::SHA1.hexdigest( torrent['info'].bencode )
-puts info_hash
+ARGV.each do|file|
+	puts "File: #{file}"
+	torrent		= BEncode.load_file( file )
+	info_hash	= Digest::SHA1.hexdigest( torrent['info'].bencode )
+	puts "Hash: #{info_hash}"
+	puts "---"
+end
