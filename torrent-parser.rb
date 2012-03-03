@@ -1,10 +1,6 @@
+require 'rubygems'
 require 'bencode'
-t = BEncode.load(data)
+require 'digest/sha1'
 
-
-File.open("the-muppets.torrent", "r") do |infile|
-	while (line = infile.gets)
-		puts "#{counter}: #{line}"
-		counter = counter + 1
-	end
-end
+torrent = BEncode.load_file("the-muppets.torrent")
+puts torrent["announce"]
